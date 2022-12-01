@@ -10,15 +10,34 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  @override
+  int selectedIndex = 0;
+
+  void onItemTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+      // print(' seleeeeeeeeee${selectedIndex}');
+    });
+  }
+
+  final List<Widget> widgetOption = <Widget>[
+    const Text("Home"),
+    const Text("Search"),
+    const Text("Ticket"),
+    const Text("Profile"),
+  ];
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         // centerTitle: true,
         title: const Text(" My Ticket "),
       ),
-      body: const Center(child: Text("heyyy")),
+      body: Center(
+        child: widgetOption[selectedIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        onTap: onItemTapped,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         selectedItemColor: Colors.blueGrey,
@@ -34,8 +53,8 @@ class _BottomBarState extends State<BottomBar> {
               activeIcon: Icon(FluentSystemIcons.ic_fluent_search_filled),
               label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(FluentSystemIcons.ic_fluent_ticket_regular),
-              activeIcon: Icon(FluentSystemIcons.ic_fluent_ticket_filled),
+              icon: Icon(FluentSystemIcons.ic_fluent_airplane_regular),
+              activeIcon: Icon(FluentSystemIcons.ic_fluent_airplane_filled),
               label: "Home"),
           BottomNavigationBarItem(
               icon: Icon(FluentSystemIcons.ic_fluent_person_regular),
